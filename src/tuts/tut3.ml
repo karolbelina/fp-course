@@ -28,16 +28,35 @@ let sumProd xs = List.fold_left (fun (sum, prod) x -> (sum + x, prod * x)) (0, 1
 (* ex 5 *)
 (* insertion sort *)
 let insertionsort pred xs = 
-	let rec insert x = function
-		[] -> [x]
-		| h :: t as xs -> if not (pred h x)
-			then x :: xs
-			else h :: insert x t
-	in List.fold_left (fun acc x -> insert x acc) [] xs;;
+    let rec insert x = function
+        [] -> [x]
+        | h :: t as xs -> if (pred h x)
+            then h :: insert x t
+            else x :: xs
+    in List.fold_left (fun acc x -> insert x acc) [] xs;;
 
 (* usage *)
 insertionsort (fun x y -> x < y) [5; 3; 8; 6; 2; 9; 7; 6; 1];;
 
 (* merge sort *)
 let mergesort pred xs = 
-	
+    let split xs = 
+        let rec f (xs, ys) = function
+            [] -> (List.rev xs, List.rev ys)
+            | [x] -> (List.rev (x :: xs), List.rev ys)
+            | x :: y :: t -> f (x :: xs, y :: ys) t
+        in f ([], []) xs
+    in let rec merge = function
+        [], ys -> ys
+        | xs, [] -> xs
+        | hx :: tx as xs, (hy :: ty as ys) -> if (pred hx hy)
+            then hx :: merge (tx, ys)
+            else hy :: merge (ty, xs)
+    in let rec f = function
+        [] -> []
+        | [x] -> [x]
+        | _ as xs -> let (left, right) = split xs in merge (f left, f right)
+    in f xs;;
+
+(* usage *)
+mergesort (fun x y -> x < y) [5; 3; 8; 6; 2; 9; 7; 6; 1];;
