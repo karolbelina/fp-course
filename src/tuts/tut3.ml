@@ -3,23 +3,23 @@
 
 (* let f1 x = x 2 2;; *)
 (* x : int -> int -> 'a = <fun> *)
-(* val f1 : (int -> int -> 'a) -> 'a = <fun> *)
+(* f1 : (int -> int -> 'a) -> 'a = <fun> *)
 
 (* let f2 x y z = x ( y ^ z );; *)
 (* y : string *)
 (* z : string *)
 (* x : string -> 'a = <fun> *)
-(* val f2 : (string -> 'a) -> string -> string -> 'a = <fun> *)
+(* f2 : (string -> 'a) -> string -> string -> 'a = <fun> *)
 
 (* ex 2 *)
 (* define functions curry3 and uncurry3 *)
 let curry3 f x y z = f (x, y, z);;
 (* let curry3' = function f -> function x -> function y -> function z -> f (x, y, z);; *)
-(* val curry3 : ('a * 'b * 'c -> 'd) -> 'a -> 'b -> 'c -> 'd = <fun> *)
+(* curry3 : ('a * 'b * 'c -> 'd) -> 'a -> 'b -> 'c -> 'd = <fun> *)
 
 let uncurry3 f (x, y, z) = f x y z;;
 (* let uncurry3' = function f -> function (x, y, z) -> f x y z;; *)
-(* val uncurry3 : ('a -> 'b -> 'c -> 'd) -> 'a * 'b * 'c -> 'd = <fun> *)
+(* uncurry3 : ('a -> 'b -> 'c -> 'd) -> 'a * 'b * 'c -> 'd = <fun> *)
 
 (* ex 3 *)
 (* define a specific function using List.fold_left *)
@@ -55,7 +55,7 @@ let mergesort pred xs =
     in let rec f = function
         [] -> []
         | [x] -> [x]
-        | _ as xs -> let (left, right) = split xs in merge (f left, f right)
+        | xs -> let (left, right) = split xs in merge (f left, f right)
     in f xs;;
 
 (* usage *)
