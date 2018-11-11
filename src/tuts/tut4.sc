@@ -1,7 +1,9 @@
-// definition of a binary tree for excercises 3 and 4
-
 // ex 3
-// define a specific function using foldLeft
+// define any function [A,B]A => B
+def f1[A,B](x: A): B = f1(x)
+def f2[A,B](x: A): B = throw new Exception
+
+// definition of a binary tree for excercises 3 and 4
 sealed trait BT[+A]
 case object Empty extends BT[Nothing]
 case class Node[+A](elem:A, left:BT[A], right:BT[A]) extends BT[A]

@@ -15,9 +15,8 @@
 
 (* ex 2 *)
 (* define any function f : 'a -> 'b *)
-
-(* let rec f x = f x;; *)
-(* let f x = raise Exit;; *)
+let rec f x = f x;;
+let f' x = raise Exit;;
 
 (* definition of a binary tree for excercises 3 and 4 *)
 type 'a bt = 
