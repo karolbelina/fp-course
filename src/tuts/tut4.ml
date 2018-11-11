@@ -29,12 +29,12 @@ let tt = Node(1, Node(2, Node(4, Empty, Empty), Empty), Node(3, Node(5, Empty, N
 (* ex 3 *)
 (* return a list of nodes in order they were visited doing a breadth-first search on a tree *)
 let breadthBT tree =
-    let rec f queue visited = 
+    let rec f queue = 
         match queue with
-            [] -> visited
-            | Empty :: t -> f t visited
-            | Node(v, l, r) :: t -> f (t @ [l; r]) (visited @ [v])
-    in f [tree] [];;
+            [] -> []
+            | Empty :: t -> f t
+            | Node(v, l, r) :: t -> v :: f (t @ [l; r])
+    in f [tree];;
 
 (* ex 4 *)
 (* return the internal and external path length of an extended binary tree *)
