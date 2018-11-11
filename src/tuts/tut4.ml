@@ -15,6 +15,7 @@
 
 (* ex 2 *)
 (* define any function f : 'a -> 'b *)
+
 (* let rec f x = f x;; *)
 (* let f x = raise Exit;; *)
 
