@@ -41,17 +41,16 @@ insertionsort (fun x y -> x < y) [5; 3; 8; 6; 2; 9; 7; 6; 1];;
 (* merge sort *)
 let mergesort pred xs = 
     let split xs = 
-        let rec f (xs, ys) = function
-            [] -> (List.rev xs, List.rev ys)
-            | [x] -> (List.rev (x :: xs), List.rev ys)
-            | x :: y :: t -> f (x :: xs, y :: ys) t
-        in f ([], []) xs
+        let rec f xs n (l, r) = 
+            if n = 0 then (List.rev l, xs)
+            else f (List.tl xs) (n - 1) (List.hd xs :: l, r)
+        in f xs (List.length xs / 2) ([], [])
     in let rec merge = function
         [], ys -> ys
         | xs, [] -> xs
         | hx :: tx as xs, (hy :: ty as ys) -> if (pred hx hy)
             then hx :: merge (tx, ys)
-            else hy :: merge (ty, xs)
+            else hy :: merge (xs, ty)
     in let rec f = function
         [] -> []
         | [x] -> [x]
@@ -60,3 +59,9 @@ let mergesort pred xs =
 
 (* usage *)
 mergesort (fun x y -> x < y) [5; 3; 8; 6; 2; 9; 7; 6; 1];;
+
+(* check the stability *)
+let xs = [(5, 'a'); (3, 'a'); (5, 'b'); (6, 'a'); (2, 'a'); (9, 'a'); (6, 'b'); (2, 'b'); (6, 'c')];;
+let pred = (fun (vx, kx) (vy, ky) -> vx <= vy);;
+insertionsort pred xs;;
+mergesort pred xs;;
