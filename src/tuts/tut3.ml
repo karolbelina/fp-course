@@ -36,7 +36,7 @@ let insertionsort pred xs =
     in List.fold_left (fun acc x -> insert x acc) [] xs;;
 
 (* usage *)
-insertionsort (fun x y -> x < y) [5; 3; 8; 6; 2; 9; 7; 6; 1];;
+insertionsort (fun x y -> x <= y) [5; 3; 8; 6; 2; 9; 7; 6; 1];;
 
 (* merge sort *)
 let mergesort pred xs = 
@@ -58,7 +58,7 @@ let mergesort pred xs =
     in f xs;;
 
 (* usage *)
-mergesort (fun x y -> x < y) [5; 3; 8; 6; 2; 9; 7; 6; 1];;
+mergesort (fun x y -> x <= y) [5; 3; 8; 6; 2; 9; 7; 6; 1];;
 
 (* check the stability *)
 let xs = [(5, 'a'); (3, 'a'); (5, 'b'); (6, 'a'); (2, 'a'); (9, 'a'); (6, 'b'); (2, 'b'); (6, 'c')];;

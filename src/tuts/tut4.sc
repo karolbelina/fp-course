@@ -25,7 +25,7 @@ def breadthBT[A](tree: BT[A]): List[A] = {
 }
 
 // ex 4
-// return the internal and external path length of an extended binary tree
+// calculate the internal and external path length of an extended binary tree
 def internalPathLength[A](tree: BT[A]): Int = {
   def f(depth: Int, tree: BT[A]): Int = {
     tree match {
