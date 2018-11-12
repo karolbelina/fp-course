@@ -37,7 +37,7 @@ let breadthBT tree =
     in f [tree];;
 
 (* ex 4 *)
-(* return the internal and external path length of an extended binary tree *)
+(* calculate the internal and external path length of an extended binary tree *)
 let internalPathLength tree = 
     let rec f depth = function
         Empty -> 0
