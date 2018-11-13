@@ -34,8 +34,9 @@ def mergesort[A](pred: (A, A) => Boolean, xs: List[A]): List[A] = {
   def split(xs: List[A]): (List[A], List[A]) = {
     @tailrec
     def f(xs: (List[A], List[A]), n: Int): (List[A], List[A]) = {
-      if(n == 0) (xs._1.reverse, xs._2)
-      else f((xs._2.head :: xs._1, xs._2.tail), n - 1)
+      val (l, r) = xs
+      if(n == 0) (l.reverse, r)
+      else f((r.head :: l, r.tail), n - 1)
     }
     f((Nil, xs), xs.length / 2)
   }
