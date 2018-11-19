@@ -46,7 +46,7 @@ let ldivide =
         LNil -> LNil
         | LCons(x, xf) -> match xf () with
             LNil -> LCons(x, function () -> LNil)
-            | LCons(y, yf) -> LCons(x, function () -> alternate (yf ()))
+            | LCons(_, yf) -> LCons(x, function () -> alternate (yf ()))
     in function
     LNil -> (LNil, LNil)
     | LCons(_, xf) as x -> (alternate x, alternate (xf ()));;
