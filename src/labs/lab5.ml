@@ -35,6 +35,7 @@ let primes =
     in sieve (lfrom 2);;
 
 (* ex 1 *)
+(* divide a lazy list into two separate lazy lists with alternating elements *)
 let rec divide = function
     Nil -> (Nil, Nil)
     | Cons(x, Nil) -> (Cons(x, Nil), Nil)
