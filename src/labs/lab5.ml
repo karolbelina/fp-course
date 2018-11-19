@@ -2,7 +2,7 @@
 type 'a nlist = Nil | Cons of 'a * ('a nlist);;
 type 'a llist = LNil | LCons of 'a * (unit -> 'a llist);;
 
-(* auxilliary functions *)
+(* auxiliary functions *)
 let rec toNList = function
     [] -> Nil
     | h :: t -> Cons(h, toNList t);;
