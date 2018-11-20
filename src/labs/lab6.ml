@@ -53,3 +53,14 @@ ltake (6, lduplicate (toLazyList [1; 2; 3]));;
 ltake (12, lduplicate (lfrom 0));;
 ltake (12, lduplicate (toLazyList [0; 4; 1; 3; 2]));;
 
+(* ex 3 *)
+(* some dog bullshit *)
+type dog = Dog of string * (unit -> string);;
+
+let azor = Dog("blablador", function () -> "samolot");;
+let reks = Dog("kundel", function () -> "rower");;
+let pies = Dog("kot", function () -> "trebusz");;
+let burek = Dog("jamnik", function () -> "wózek inwalidzki");;
+
+let getBreed (Dog (a, b)) = a;;
+let getVehicle (Dog (a, b)) = b ();;
