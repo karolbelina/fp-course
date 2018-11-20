@@ -49,8 +49,8 @@ let ldivide =
             LNil -> LCons(x, function () -> LNil)
             | LCons(_, yf) -> LCons(x, function () -> alternate (yf ()))
     in function
-    LNil -> (LNil, LNil)
-    | LCons(_, xf) as x -> (alternate x, alternate (xf ()));;
+        LNil -> (LNil, LNil)
+        | LCons(_, xf) as x -> (alternate x, alternate (xf ()));;
 
 (* tests *)
 let (even, odd) = divide LNil in (toList even, toList odd);;
