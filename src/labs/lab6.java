@@ -1,8 +1,8 @@
 import java.util.Arrays;
 
 public class lab6 {
-	// ex 1
-	// insert an element to an already sorted array
+    // ex 1
+    // insert an element to an already sorted array
     public static int[] insert(int x, int[] xs) {
         int n = xs.length;
         int i = 0;
