@@ -38,7 +38,7 @@ let rec duplicate =
 
 duplicate [1; 2; 3];;
 duplicate [0; 4; 1; 3; 2];;
-duplicate [2; -2];;
+duplicate [2; 0];;
 
 let rec lduplicate = 
     let rec f n x xf = 
@@ -62,5 +62,5 @@ let reks = Dog("kundel", function () -> "rower");;
 let pies = Dog("kot", function () -> "trebusz");;
 let burek = Dog("jamnik", function () -> "wózek inwalidzki");;
 
-let getBreed (Dog (a, b)) = a;;
-let getVehicle (Dog (a, b)) = b ();;
+let getBreed (Dog (b, v)) = b;;
+let getVehicle (Dog (b, v)) = v ();;

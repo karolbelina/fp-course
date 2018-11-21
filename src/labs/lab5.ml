@@ -11,9 +11,9 @@ let rec toLazyList = function
     [] -> LNil
     | h :: t -> LCons(h, function () -> toLazyList t);;
 
-let rec toList = 
-    | Nil -> []
-    | Cons(x, xs) -> x :: ntake xs;;
+let rec toList = function
+    Nil -> []
+    | Cons(x, xs) -> x :: toList xs;;
 
 let rec ltake = function
     (0, _) -> []
@@ -40,7 +40,7 @@ let rec divide = function
     Nil -> (Nil, Nil)
     | Cons(x, Nil) -> (Cons(x, Nil), Nil)
     | Cons(x, Cons(y, xs)) ->
-        let (even, odd) = podziel xs in (Cons(x, even), Cons(y, odd));;
+        let (even, odd) = divide xs in (Cons(x, even), Cons(y, odd));;
 
 let ldivide = 
     let rec alternate = function
@@ -53,7 +53,7 @@ let ldivide =
         | LCons(_, xf) as x -> (alternate x, alternate (xf ()));;
 
 (* tests *)
-let (even, odd) = divide LNil in (toList even, toList odd);;
+let (even, odd) = divide Nil in (toList even, toList odd);;
 let (even, odd) = divide (toNList [5; 6; 3; 2; 1]) in (toList even, toList odd);;
 let (even, odd) = divide (toNList [1; 2; 3; 4; 5; 6; 7; 8]) in (toList even, toList odd);;
 
