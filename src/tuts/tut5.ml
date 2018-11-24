@@ -27,3 +27,9 @@ let rec lrepeat k =
 ltake (8, lrepeat 3 (toLazyList [1; 2; 3]));;
 ltake (12, lrepeat 4 (lfrom 0));;
 ltake (10, lrepeat 2 (toLazyList [0; 4; 1; 3; 2]));;
+
+(* ex 2 *)
+(* define a fibonacci sequence using lazy lists *)
+let lfib = 
+	let rec f a b = LCons(a, function () -> f b (a + b))
+	in f 0 1;;
