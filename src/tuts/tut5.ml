@@ -2,7 +2,7 @@
 type 'a llist = LNil | LCons of 'a * (unit -> 'a llist);;
 
 (* ex 1 *)
-(* repeat elements k times in a lazy list *)
+(* repeat elements in a lazy list k times *)
 let rec lrepeat k = 
     let rec f n x xf = 
         if n > 0 then LCons(x, function () -> f (n - 1) x xf)
