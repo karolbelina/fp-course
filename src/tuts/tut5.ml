@@ -1,4 +1,4 @@
-(* definition of a lazy list *)
+(* definition of a lazy list for excercises 1 and 2 *)
 type 'a llist = LNil | LCons of 'a * (unit -> 'a llist);;
 
 (* auxiliary functions *)
@@ -33,3 +33,19 @@ ltake (10, lrepeat 2 (toLazyList [0; 4; 1; 3; 2]));;
 let lfib = 
 	let rec f a b = LCons(a, function () -> f b (a + b))
 	in f 0 1;;
+
+(* definition of a lazy binary tree for excercise 3 *)
+type 'a lBT = LEmpty | LNode of 'a * (unit ->'a lBT) * (unit -> 'a lBT);;
+
+(* ex 3 *)
+(* create a lazy list containg every element of the potentially infinite lazy binary tree *)
+let lBTtoLlist tree =
+    let rec f queue = 
+        match queue with
+            [] -> LNil
+            | LEmpty :: t -> f t
+            | LNode(v, lf, rf) :: t -> LCons(v, function () -> f (t @ [lf (); rf ()]))
+    in f [tree];;
+
+(* construct an infinite lazy binary tree with a root of value n and subtrees of value 2*n and 2*n+1 *)
+let rec lTree n = LNode(n, (function () -> lTree (2 * n)), (function () -> lTree (2 * n + 1)));;
