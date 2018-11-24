@@ -22,7 +22,7 @@ let lfib =
 type 'a lBT = LEmpty | LNode of 'a * (unit ->'a lBT) * (unit -> 'a lBT);;
 
 (* ex 3 *)
-(* create a lazy list containg every element of the potentially infinite lazy binary tree *)
+(* generate a lazy list containg every element of the potentially infinite lazy binary tree *)
 let lBTtoLlist tree =
     let rec f queue = 
         match queue with
