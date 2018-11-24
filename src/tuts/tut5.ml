@@ -1,18 +1,6 @@
 (* definition of a lazy list for excercises 1 and 2 *)
 type 'a llist = LNil | LCons of 'a * (unit -> 'a llist);;
 
-(* auxiliary functions *)
-let rec toLazyList = function
-    [] -> LNil
-    | h :: t -> LCons(h, function () -> toLazyList t);;
-
-let rec ltake = function
-    (0, _) -> []
-    | (_, LNil) -> []
-    | (n, LCons(x, xf)) -> x :: ltake(n - 1, xf ());;
-
-let rec lfrom k = LCons(k, function () -> lfrom (k + 1));;
-
 (* ex 1 *)
 (* repeat elements k times in a lazy list *)
 let rec lrepeat k = 
@@ -23,10 +11,6 @@ let rec lrepeat k =
     in function
         LNil -> LNil
         | LCons(x, xf) -> f k x xf;;
-
-ltake (8, lrepeat 3 (toLazyList [1; 2; 3]));;
-ltake (12, lrepeat 4 (lfrom 0));;
-ltake (10, lrepeat 2 (toLazyList [0; 4; 1; 3; 2]));;
 
 (* ex 2 *)
 (* define a fibonacci sequence using lazy lists *)
