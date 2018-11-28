@@ -31,5 +31,5 @@ let lBTtoLlist tree =
             | LNode(v, lf, rf) :: t -> LCons(v, function () -> f (t @ [lf (); rf ()]))
     in f [tree];;
 
-(* construct an infinite lazy binary tree with a root of value n and subtrees of value 2*n and 2*n+1 *)
+(* generate an infinite lazy binary tree with a root of value n and subtrees of value 2*n and 2*n+1 *)
 let rec lTree n = LNode(n, (function () -> lTree (2 * n)), (function () -> lTree (2 * n + 1)));;
