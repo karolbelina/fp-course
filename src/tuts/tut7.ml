@@ -37,30 +37,29 @@ end;;
 (* define a module which supports basic operations on a queue represented by a pair or lists *)
 module QueueB : QUEUE_FUN =
 struct
-	(* OutStack, InStack *)
 	type 'a t = 'a list * 'a list
 	exception Empty of string
 
 	let empty () = ([], [])
 
-	let enqueue (e, (xl, yl)) = (xr, e :: yl)
+	let enqueue (e, (xl, yl)) = 
+		if xl = [] then (List.rev (e :: yl), [])
+		else (xl, e :: yl)
 
 	let dequeue = function
-		([], []) -> ([], [])
-		
-		([_], yl) -> (List.rev yl, [])
-		| (_ :: tx, yl) -> (tx, yl)
+		([], _) -> ([], [])
+		| (_ :: tx, yl) -> 
+			if tx = [] then (List.rev yl, [])
+			else (tx, yl)
 
-	let rec first = function
-		e1 :: e2 :: q -> first (e2 :: q)
-		| [e] -> e
-		| [] -> raise (Empty "module QueueB: first")
+	let first = function
+		(h :: _, _) -> h
+		| ([], _) -> raise (Empty "module QueueB: first")
 
-	let isEmpty (xl, yl) = first = []
+	let isEmpty (xl, _) = xl = []
 end;;
 
 (* tests *)
-let q = let open QueueA in enqueue (3, enqueue (2, enqueue (1, empty ())));;
-
-QueueA.first q;;
-let open QueueA in first (dequeue (dequeue q));;
+let q = let open QueueB in enqueue (3, enqueue (2, enqueue (1, empty ())));;
+QueueB.first q;;
+let open QueueB in first (dequeue (dequeue q));;
