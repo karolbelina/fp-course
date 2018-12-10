@@ -84,13 +84,14 @@ sig
 end;;
 
 (* ex 2 *)
+(* define a module which supports basic operations on a queue represented by a cyclic array *)
 module QueueC : QUEUE_MUT = 
 struct
 	type 'a t = {mutable f : int; mutable r : int; mutable arr : 'a option array}
 	exception Empty of string
 	exception Full of string
 
-	let empty n = {f = 0; r = 0; arr = Array.make (n + 1) None }
+	let empty n = {f = 0; r = 0; arr = Array.make (n + 1) None}
 
 	let isEmpty q = q.f = q.r
 
