@@ -95,7 +95,7 @@ struct
 
 	let isEmpty q = q.f = q.r
 
-	let isFull q = (q.r + 1) mod (Array.length q.arr) = q.f
+	let isFull q = q.f = (q.r + 1) mod (Array.length q.arr)
 
 	let enqueue (e, q) =
 		if isFull q then raise (Full "module QueueC: enqueue")
@@ -104,7 +104,7 @@ struct
 			q.r <- (q.r + 1) mod (Array.length q.arr)
 		end
 
-	let dequeue q = if q.f != q.r then q.f <- (q.f + 1) mod (Array.length q.arr)
+	let dequeue q = if not (isEmpty q) then q.f <- (q.f + 1) mod (Array.length q.arr)
 
 	let first q = 
 		if isEmpty q then raise (Empty "module QueueC: first")
