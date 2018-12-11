@@ -22,14 +22,12 @@ struct
 	let enqueue (e, q) = e :: q
 
 	let rec dequeue = function
-		e1 :: e2 :: q -> e1 :: dequeue (e2 :: q)
-		| [_] -> []
-		| [] -> []
+		[] -> []
+		| e :: q -> if q <> [] then e :: dequeue q else []
 
 	let rec first = function
-		e1 :: e2 :: q -> first (e2 :: q)
-		| [e] -> e
-		| [] -> raise (Empty "module QueueA: first")
+		[] -> raise (Empty "module QueueA: first")
+		| e :: q -> if q <> [] then first q else e
 
 	let isEmpty q = q = []
 end;;
@@ -87,7 +85,7 @@ end;;
 (* define a module which supports basic operations on a queue represented by a cyclic array *)
 module QueueC : QUEUE_MUT = 
 struct
-	type 'a t = {mutable f : int; mutable r : int; mutable arr : 'a option array}
+	type 'a t = {mutable f : int; mutable r : int; arr : 'a option array}
 	exception Empty of string
 	exception Full of string
 
