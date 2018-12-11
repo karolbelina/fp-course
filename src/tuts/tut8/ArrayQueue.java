@@ -1,14 +1,14 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class ArrayQueue<E> implements MyQueue<E> {
-    private int f;
-    private int r;
-    private ArrayList<E> arr;
+    private int f, r;
+    private List<E> arr;
 
     public ArrayQueue(int n) {
         f = 0;
         r = 0;
-        arr = new ArrayList<E>(n + 1);
+        arr = new ArrayList<>(n + 1);
 
         for(int i = 0; i < n + 1; i++) {
             arr.add(null);
@@ -18,7 +18,7 @@ public class ArrayQueue<E> implements MyQueue<E> {
     @Override
     public void enqueue(E x) throws FullException {
         if(isFull()) {
-            throw new FullException();
+            throw new FullException("ArrayQueue: enqueue");
         }
 
         arr.set(r, x);
@@ -35,7 +35,7 @@ public class ArrayQueue<E> implements MyQueue<E> {
     @Override
     public E first() throws EmptyException {
         if(isEmpty()) {
-            throw new EmptyException();
+            throw new EmptyException("ArrayQueue: first");
         }
 
         return arr.get(f);
