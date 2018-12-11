@@ -97,10 +97,9 @@ struct
 
 	let enqueue (e, q) =
 		if isFull q then raise (Full "module QueueC: enqueue")
-		else begin
+		else
 			q.arr.(q.r) <- Some e;
 			q.r <- (q.r + 1) mod (Array.length q.arr)
-		end
 
 	let dequeue q = if not (isEmpty q) then q.f <- (q.f + 1) mod (Array.length q.arr)
 
