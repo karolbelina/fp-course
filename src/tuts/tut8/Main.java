@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
         try {
-            ArrayQueue<Integer> q = new ArrayQueue<Integer>(3);
+            ArrayQueue<Integer> q = new ArrayQueue<>(3);
             q.enqueue(1);
             q.enqueue(2);
             q.enqueue(3);

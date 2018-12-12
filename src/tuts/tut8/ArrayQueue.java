@@ -6,8 +6,7 @@ public class ArrayQueue<E> implements MyQueue<E> {
     private List<E> arr;
 
     public ArrayQueue(int n) {
-        f = 0;
-        r = 0;
+        f = r = 0;
         arr = new ArrayList<>(n + 1);
 
         for(int i = 0; i < n + 1; i++) {
@@ -28,6 +27,7 @@ public class ArrayQueue<E> implements MyQueue<E> {
     @Override
     public void dequeue() {
         if(!isEmpty()) {
+            arr.set(f, null);
             f = (f + 1) % arr.size();
         }
     }
