@@ -88,19 +88,22 @@ struct
 	exception Empty of string
 	exception Full of string
 
-	let empty n = {f = 0; r = 0; arr = Array.make (n + 1) None}
+	let empty n = {f = 0; r = 0; arr = Array.make (succ n) None}
 
 	let isEmpty q = q.f = q.r
 
-	let isFull q = q.f = (q.r + 1) mod (Array.length q.arr)
+	let isFull q = q.f = (succ q.r) mod (Array.length q.arr)
 
 	let enqueue (e, q) =
 		if isFull q then raise (Full "module QueueC: enqueue")
 		else
 			q.arr.(q.r) <- Some e;
-			q.r <- (q.r + 1) mod (Array.length q.arr)
+			q.r <- (succ q.r) mod (Array.length q.arr)
 
-	let dequeue q = if not (isEmpty q) then q.f <- (q.f + 1) mod (Array.length q.arr)
+	let dequeue q =
+		if not (isEmpty q) then
+			q.arr.(q.f) <- None; 
+			q.f <- (succ q.f) mod (Array.length q.arr)
 
 	let first q = 
 		if isEmpty q then raise (Empty "module QueueC: first")
