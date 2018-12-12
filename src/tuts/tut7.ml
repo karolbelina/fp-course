@@ -45,15 +45,14 @@ struct
 
 	let empty () = ([], [])
 
-	let enqueue (e, (xl, yl)) = 
-		if xl = [] then (List.rev (e :: yl), [])
-		else (xl, e :: yl)
+	let enqueue = function
+		(e, ([], _)) -> ([e], [])
+		| (e, (xl, yl)) -> (xl, e :: yl)
 
 	let dequeue = function
 		([], _) -> ([], [])
-		| (_ :: tx, yl) -> 
-			if tx = [] then (List.rev yl, [])
-			else (tx, yl)
+		| ([_], yl) -> (List.rev yl, [])
+		| (_ :: tx, yl) -> (tx, yl)
 
 	let first = function
 		(h :: _, _) -> h
