@@ -40,7 +40,6 @@ public class Depositor extends Thread {
                 e.printStackTrace();
             }
         }
-
     }
 
     public int getTotalDepositedMoney() {
