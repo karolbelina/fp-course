@@ -8,19 +8,19 @@ def whileLoop(condition: =>Boolean)(expression: =>Unit): Unit = {
 }
 
 // ex 2
-// rewrite the quicksort function from the lecture
+// rewrite the quickSort function from the lecture
 def swap[A](tab: Array[A], i: Int, j: Int): Unit = {
   val aux = tab(i)
   tab(i) = tab(j)
   tab(j) = aux
 }
 
-def choose_pivot[A](tab: Array[A], m: Int, n: Int) = tab((m + n) / 2)
+def choosePivot[A](tab: Array[A], m: Int, n: Int) = tab((m + n) / 2)
 
 def partition(tab: Array[Int], l: Int, r: Int): (Int, Int) = {
   var i = l
   var j = r
-  val pivot = choose_pivot(tab, l, r)
+  val pivot = choosePivot(tab, l, r)
   while (i <= j) {
     while (tab(i) < pivot) i += 1
     while (pivot < tab(j)) j -= 1
@@ -46,4 +46,4 @@ def quick(tab: Array[Int], l: Int, r: Int): Unit =
   }
 }
 
-def quicksort(tab: Array[Int]): Unit = quick(tab, 0, tab.length - 1)
+def quickSort(tab: Array[Int]): Unit = quick(tab, 0, tab.length - 1)

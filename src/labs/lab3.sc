@@ -3,21 +3,12 @@ import scala.annotation.tailrec
 // ex 2
 // convert a list of binary digits into a single decimal integer
 def binaryToDecimal(xs: List[Int]): Int = {
-  def pow(a: Int, b: Int): Int = {
-    @tailrec
-    def f(i: Int, acc: Int): Int = {
-      if(i == b) acc
-      else f(i + 1, acc * a)
-    }
-    if(b >= 0) f(0, 1)
-    else throw new Exception("negative exponent")
-  }
   @tailrec
   def f(xs: List[Int], i: Int, x: Int): Int = {
     xs match {
       case Nil => x
       case h :: t =>
-        if(h == 0 || h == 1) f(t, i + 1, x + (if(h == 1) pow(2, i) else 0))
+        if(h == 0 || h == 1) f(t, i + 1, x + (if(h == 1) 2 << i else 0))
         else throw new Exception("expected 0 or 1")
     }
   }

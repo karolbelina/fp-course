@@ -1,18 +1,18 @@
 package ex3;
 
 public class Producer extends Thread {
-    final private Produce buf;
+  final private Produce buf;
 
-    public Producer(String name, Produce buf) {
-        super(name);
-        this.buf = buf;
-    }
+  public Producer(String name, Produce buf) {
+    super(name);
+    this.buf = buf;
+  }
 
-    @Override
-    public void run() {
-        for(int i = 1; i <= 100; i++) {
-            System.out.println(getName() + " producing " + i);
-            buf.put(i);
-        }
+  @Override
+  public void run() {
+    for(int i = 1; i <= 100; i++) {
+      System.out.println(getName() + " producing " + i);
+      buf.put(i);
     }
+  }
 }

@@ -14,7 +14,7 @@ def sumProd(xs: List[Int]): (Int, Int) = (xs foldLeft (0, 1)) ((acc, x) => (acc.
 
 // ex 5
 // insertion sort
-def insertionsort[A](pred: (A, A) => Boolean, xs: List[A]): List[A] = {
+def insertionSort[A](pred: (A, A) => Boolean, xs: List[A]): List[A] = {
   def insert(x: A, xs: List[A]): List[A] = {
     xs match {
       case Nil => List(x)
@@ -27,10 +27,10 @@ def insertionsort[A](pred: (A, A) => Boolean, xs: List[A]): List[A] = {
 }
 
 // usage
-insertionsort((x: Int, y: Int) => x < y, List(5, 3, 8, 6, 2, 9, 7, 6, 1))
+insertionSort((x: Int, y: Int) => x < y, List(5, 3, 8, 6, 2, 9, 7, 6, 1))
 
 // merge sort
-def mergesort[A](pred: (A, A) => Boolean, xs: List[A]): List[A] = {
+def mergeSort[A](pred: (A, A) => Boolean, xs: List[A]): List[A] = {
   def split(xs: List[A]): (List[A], List[A]) = {
     @tailrec
     def f(xs: (List[A], List[A]), n: Int): (List[A], List[A]) = {
@@ -61,10 +61,10 @@ def mergesort[A](pred: (A, A) => Boolean, xs: List[A]): List[A] = {
 }
 
 // usage
-mergesort((x: Int, y: Int) => x <= y, List(5, 3, 8, 6, 2, 9, 7, 6, 1))
+mergeSort((x: Int, y: Int) => x <= y, List(5, 3, 8, 6, 2, 9, 7, 6, 1))
 
 // check the stability
 val xs = List((5, 'a'), (3, 'a'), (5, 'b'), (6, 'a'), (2, 'a'), (9, 'a'), (6, 'b'), (2, 'b'), (6, 'c'))
 val pred = (x: (Int, Char), y: (Int, Char)) => x._1 <= y._1
-insertionsort(pred, xs)
-mergesort(pred, xs)
+insertionSort(pred, xs)
+mergeSort(pred, xs)

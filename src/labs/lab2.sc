@@ -5,7 +5,7 @@ import scala.annotation.tailrec
 def fibonacci(n: Int): Int = {
   @tailrec
   def f(n: Int, a: Int, b: Int): Int = {
-    if(n < 0) throw new Exception("negative index")
+    if(n < 0) throw new Exception("fibonacci: n must be a natural number")
     else if(n == 0) a
     else if(n == 1) b
     else f(n - 1, b, b + a)

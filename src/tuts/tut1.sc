@@ -15,7 +15,7 @@ def count[A](x: A, xs: List[A]): Int = {
 // ex 3
 // return a list in which the same element is repeated n number of times
 def replicate[A](x: A, n: Int): List[A] = {
-  if(n < 0) throw new Exception("negative number of repetitions")
+  if(n < 0) throw new Exception("replicate: n must be a natural number")
   else if(n == 0) Nil
   else x :: replicate(x, n - 1)
 }

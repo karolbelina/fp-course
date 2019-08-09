@@ -3,7 +3,7 @@
 def f1[A,B](x: A): B = f1(x)
 def f2[A,B](x: A): B = throw new Exception
 
-// definition of a binary tree for excercises 3 and 4
+// definition of a binary tree for exercises 3 and 4
 sealed trait BT[+A]
 case object Empty extends BT[Nothing]
 case class Node[+A](elem:A, left:BT[A], right:BT[A]) extends BT[A]
@@ -46,7 +46,7 @@ def externalPathLength[A](tree: BT[A]): Int = {
   f(0, tree)
 }
 
-// definition of a graph for excercise 5
+// definition of a graph for exercise 5
 sealed trait Graphs[A]
 case class Graph[A](succ: A => List[A]) extends Graphs[A]
 

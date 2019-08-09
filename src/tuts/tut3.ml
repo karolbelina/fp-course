@@ -23,45 +23,45 @@ let uncurry3 f (x, y, z) = f x y z;;
 
 (* ex 3 *)
 (* define a specific function using List.fold_left *)
-let sumProd xs = List.fold_left (fun (sum, prod) x -> (sum + x, prod * x)) (0, 1) xs;;
+let sum_prod xs = List.fold_left (fun (sum, prod) x -> (sum + x, prod * x)) (0, 1) xs;;
 
 (* ex 5 *)
 (* insertion sort *)
-let insertionsort pred xs = 
-    let rec insert x = function
-        [] -> [x]
-        | h :: t as xs -> if (pred h x)
-            then h :: insert x t
-            else x :: xs
-    in List.fold_left (fun acc x -> insert x acc) [] xs;;
+let insertion_sort pred xs = 
+  let rec insert x = function
+    [] -> [x]
+    | h :: t as xs -> if (pred h x)
+      then h :: insert x t
+      else x :: xs
+  in List.fold_left (fun acc x -> insert x acc) [] xs;;
 
 (* usage *)
-insertionsort (fun x y -> x <= y) [5; 3; 8; 6; 2; 9; 7; 6; 1];;
+insertion_sort (fun x y -> x <= y) [5; 3; 8; 6; 2; 9; 7; 6; 1];;
 
 (* merge sort *)
-let mergesort pred xs = 
-    let split xs = 
-        let rec f (l, r) n = 
-            if n = 0 then (List.rev l, r)
-            else f (List.hd r :: l, List.tl r) (n - 1)
-        in f ([], xs) (List.length xs / 2)
-    in let rec merge = function
-        [], ys -> ys
-        | xs, [] -> xs
-        | hx :: tx as xs, (hy :: ty as ys) -> if (pred hx hy)
-            then hx :: merge (tx, ys)
-            else hy :: merge (xs, ty)
-    in let rec f = function
-        [] -> []
-        | [x] -> [x]
-        | xs -> let (left, right) = split xs in merge (f left, f right)
-    in f xs;;
+let merge_sort pred xs = 
+  let split xs = 
+    let rec f (l, r) n = 
+      if n = 0 then (List.rev l, r)
+      else f (List.hd r :: l, List.tl r) (n - 1)
+    in f ([], xs) (List.length xs / 2)
+  in let rec merge = function
+    [], ys -> ys
+    | xs, [] -> xs
+    | hx :: tx as xs, (hy :: ty as ys) -> if (pred hx hy)
+      then hx :: merge (tx, ys)
+      else hy :: merge (xs, ty)
+  in let rec f = function
+    [] -> []
+    | [x] -> [x]
+    | xs -> let (left, right) = split xs in merge (f left, f right)
+  in f xs;;
 
 (* usage *)
-mergesort (fun x y -> x <= y) [5; 3; 8; 6; 2; 9; 7; 6; 1];;
+merge_sort (fun x y -> x <= y) [5; 3; 8; 6; 2; 9; 7; 6; 1];;
 
 (* check the stability *)
 let xs = [(5, 'a'); (3, 'a'); (5, 'b'); (6, 'a'); (2, 'a'); (9, 'a'); (6, 'b'); (2, 'b'); (6, 'c')];;
 let pred = (fun (vx, kx) (vy, ky) -> vx <= vy);;
-insertionsort pred xs;;
-mergesort pred xs;;
+insertion_sort pred xs;;
+merge_sort pred xs;;

@@ -4,7 +4,7 @@ def lrepeat[A](k: Int, xs: Stream[A]): Stream[A] = {
   def f(n: Int, x: A, xs: Stream[A]): Stream[A] = {
     if(n > 0) x #:: f(n - 1, x, xs)
     else if(n == 0) lrepeat(k, xs)
-    else throw new Exception("negative repetition count")
+    else throw new Exception("lrepeat: k must be a natural number")
   }
   xs match {
     case Stream.Empty => Stream.Empty
@@ -19,7 +19,7 @@ val fibs: Stream[Int] = {
   f(0, 1)
 }
 
-// definition of a lazy binary tree for excercise 3
+// definition of a lazy binary tree for exercise 3
 sealed trait lBT[+A]
 case object LEmpty extends lBT[Nothing]
 case class LNode[+A](elem: A, left: () => lBT[A], right: () => lBT[A]) extends lBT[A]

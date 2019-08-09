@@ -3,7 +3,7 @@ import scala.annotation.tailrec
 // ex 2
 // calculate the n-th Fibonacci number using regular, as well as tail recursion
 def fibonacciA(n: Int): Int = {
-  if(n < 0) throw new Exception("negative index")
+  if(n < 0) throw new Exception("fibonacciA: n must be a natural number")
   else if(n == 0) 0
   else if(n == 1) 1
   else fibonacciA(n - 2) + fibonacciA(n - 1)
@@ -12,7 +12,7 @@ def fibonacciA(n: Int): Int = {
 def fibonacciB(n: Int): Int = {
   @tailrec
   def f(n: Int, a: Int, b: Int): Int = {
-    if(n < 0) throw new Exception("negative index")
+    if(n < 0) throw new Exception("fibonacciB: n must be a natural number")
     else if(n == 0) a
     else if(n == 1) b
     else f(n - 1, b, b + a)
