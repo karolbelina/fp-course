@@ -1,5 +1,5 @@
-# Programming paradigms
-This repository contains code for every exercise from the tutorial course conducted by dr inż. Zdzisław Spławski, as well as most of the exercises by dr inż. Michał Szczepanik from the labs.
+# pp
+This repository contains code for every exercise from the tutorial part of the famous Programming paradigms course conducted by dr inż. Zdzisław Spławski, as well as most of the exercises by dr inż. Michał Szczepanik from the lab part.
 
 The code should only be used as a quick reference and preferably not as a lazy cheat sheet.
 
